@@ -24,8 +24,8 @@ const SingleUserPage = () => {
                         <textarea name="address" placeholder="Kyiv"/>
                         <label> Is Admin?</label>
                         <select name="isAdmin" id="isAdmin">
-                            <option value="true">Yes</option>
-                            <option value="false">No</option>
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
                         </select>
                         <label> Is Active?</label>
                         <select name="isActive" id="isActive">
