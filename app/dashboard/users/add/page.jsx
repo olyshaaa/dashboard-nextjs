@@ -1,6 +1,7 @@
 import styles from "../../../ui/dashboard/users/addUser/addUser.module.css"
 
 const AddUserPage = () => {
+    
     return (
         <div className={styles.container}>
             <form action="" className={styles.form}>
