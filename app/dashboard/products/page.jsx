@@ -39,7 +39,7 @@ const Products = async ({searchParams}) => {
                             </div>
                         </td>
                         <td>{description}</td>
-                        <td>{createdAt?.toString().splice(4, 16)}</td>
+                        <td>{createdAt?.toString().slice(4, 16)}</td>
                         <td>${price}</td>
                         <td>{stock}</td>
                         <td>
