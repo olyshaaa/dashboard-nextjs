@@ -4,6 +4,7 @@ import styles from "../../ui/dashboard/products/products.module.css"
 import Search from "../../ui/dashboard/search/search"
 import Pagination from "../../ui/dashboard/pagination/pagination"
 import { fetchProducts } from "../../../app/lib/data"
+import { deleteProduct } from "../../lib/actions"
 
 const Products = async ({searchParams}) => {
 
@@ -39,15 +40,18 @@ const Products = async ({searchParams}) => {
                             </div>
                         </td>
                         <td>{description}</td>
-                        <td>{createdAt?.toString().slice(4, 16)}</td>
                         <td>${price}</td>
+                        <td>{createdAt?.toString().slice(4, 16)}</td>
                         <td>{stock}</td>
                         <td>
                             <div className={styles.buttons}>
                                 <Link href={`/dashboard/products/${id}`}>
                                     <button className={`${styles.button} ${styles.view}`}>View</button>
                                 </Link>
-                                <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+                                <form action={deleteProduct}>
+                                    <input type="hidden" name="id" value={id}/>
+                                    <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+                                </form>
                             </div>
                         </td>
                     </tr>

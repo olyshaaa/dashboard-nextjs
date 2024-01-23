@@ -1,7 +1,11 @@
 import Image from "next/image"
 import styles from "../../../ui/dashboard/users/singleUser/singleUser.module.css"
+import { fetchUser } from '../../../lib/data'
 
-const SingleUserPage = () => {
+
+const SingleUserPage = async ({params}) => {
+    const {id} = params
+    const user = fetchUser(id)
     return (
         <div className={styles.container}>
                 <div className={styles.infoContainer}>
