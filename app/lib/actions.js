@@ -27,6 +27,22 @@ export const addUser = async (formData) => {
     redirect("/dashboard/users")
 }
 
+export const updateUser = async (formData) => {
+    const {id, username, email, password, phone, address, isAdmin, isActive} = Object.fromEntries(formData)
+
+    try{
+        connectToDb()
+        const updateField = {username, email, password, phone, address, isAdmin, isActive}
+        Object.keys(updateField).forEach(key=>(updateField[key]==="" || undefined) && delete updateField[key])
+        await User.findByIdAndUpdate(id, updateField)
+    }catch(e){
+        console.log(e)
+        throw new Error("Failed to update user" + e)
+    }
+
+    revalidatePath("/dashboard/users")
+    redirect("/dashboard/users")
+}
 
 export const addProduct = async (formData) => {
 
@@ -41,6 +57,22 @@ export const addProduct = async (formData) => {
     }catch(e){
         console.log(e)
         throw new Error("Failed to create product" + e)
+    }
+
+    revalidatePath("/dashboard/products")
+    redirect("/dashboard/products")
+}
+
+export const updateProduct = async (formData) => {
+    const {id, title, description, price, stock, color, size} = Object.fromEntries(formData)
+    try{
+        connectToDb()
+        const updateField = {title, description, price, stock, color, size}
+        Object.keys(updateField).forEach(key=>(updateField[key]==="" || undefined) && delete updateField[key])
+        await Product.findByIdAndUpdate(id, updateField)
+    }catch(e){
+        console.log(e)
+        throw new Error("Failed to update product" + e)
     }
 
     revalidatePath("/dashboard/products")
