@@ -110,7 +110,7 @@ export const deleteProduct = async (formData) => {
     revalidatePath("/dashboard/products")
 }
 
-export const authenticate = async (formData)=>{
+export const authenticate = async (prevState, formData)=>{
     const {username, password} = Object.fromEntries(formData)
 
     try{
@@ -120,6 +120,6 @@ export const authenticate = async (formData)=>{
             return "Wrong Credentials"
         }
         if(isRedirectError(err)){throw err}
-        throw new Error (err)
+        return "Wrong Credentials"
     }
 }
