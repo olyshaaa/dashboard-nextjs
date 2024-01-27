@@ -8,36 +8,69 @@ import bcrypt from "bcrypt"
 
 const login = async (credentials) => {
     try {
-        connectToDb()
-        const user = await User.findOne({username:credentials.username})
+      connectToDb();
+      console.log('Attempting login with credentials:', credentials);
+      const user = await User.findOne({ username: credentials.username });
 
-        if(!user)throw new Error("Wrong credentials")
+      if (!user || !user.isAdmin) throw new Error("Wrong credentials!");
 
-        const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password)
+      const isPasswordCorrect = await bcrypt.compare(
+        credentials.password,
+        user.password
+      );
 
-        if(!isPasswordCorrect) throw new Error("Wrong credentials")
+      if (!isPasswordCorrect) throw new Error("Wrong credentials!");
 
-        return user;
-    } catch (error) {
-        console.log(error)
-        throw new Error("failed to login")
+
+        /* const { NEXT_REDIRECT, ...filteredUser } = user;
+
+        return filteredUser; */
+        console.log('Login successful. Returning user:', user);
+        return user
+    }  catch (err) {
+      console.log(err);
+      return null
     }
 }
 
 
-export const {signIn, sigOut, auth} = NextAuth({
-    ...authConfig,
+export const { signIn, signOut, auth } = NextAuth({
+  ...authConfig,
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
+        console.log('Authorizing with credentials:', credentials);
         try {
-            const user = await login(credentials)
-            return user
-        } catch (error) {
-            return null
+          const user = await login(credentials);
+          console.log('Authorization successful. Returning user:', user);
+          return Promise.resolve({
+            username: user.username,
+            email: user.email,
+            img: user.img || '',
+          });
+        } catch (err) {
+          return null;
         }
-
-      }
+      },
     }),
   ],
-})
+  callbacks: {
+    async jwt({ token, user }) {
+      console.log('JWT Callback - Token:', token);
+      console.log('user from token', user);
+      if (user) {
+        token.username = user.username;
+        token.img = user.img;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      console.log('Session Callback - Session:', session);
+      if (token) {
+        session.user.username = token.username;
+        session.user.img = token.img;
+      }
+      return session;
+    },
+  },
+});

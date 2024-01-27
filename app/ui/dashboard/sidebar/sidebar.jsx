@@ -1,6 +1,8 @@
 import styles from "./sidebar.module.css"
 import MenuLink from "./menuLink/menuLink"
 import Image from "next/image";
+import {auth} from "../../../auth"
+import {signOut} from "../../../auth"
 
 import {
     MdDashboard,
@@ -78,7 +80,10 @@ import {
     },
   ];
 
-const Sidebar = () =>{
+const Sidebar = async () =>{
+
+  const session = await auth()
+  console.log(session)
     return (
         <div className={styles.container}>
             <div className={styles.user}>
@@ -98,9 +103,15 @@ const Sidebar = () =>{
                 </li>
             ))}
             </ul>
+            <form action={async () => {
+              "use server"
+              await signOut()
+            }}>
             <button className={styles.logout}>
               <MdLogout/>
-              Logout</button>
+              Logout
+              </button>
+              </form>
         </div>
     )
 }
