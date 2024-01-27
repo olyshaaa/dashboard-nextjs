@@ -82,14 +82,14 @@ import {
 
 const Sidebar = async () =>{
 
-  const session = await auth()
-  console.log(session)
+  const {user} = await auth()
+  const {username, email, img} = user
     return (
         <div className={styles.container}>
             <div className={styles.user}>
-                <Image className={styles.userImage} src="/noavatar.png" alt="" width="50" height="50"/>
+                <Image className={styles.userImage} src={user.img || "/noavatar.png"} alt="" width="50" height="50"/>
                 <div className={styles.userDetail}>
-                    <span className={styles.userName}>John Joe</span>
+                    <span className={styles.userName}>{username}</span>
                     <span className={styles.userTitle}>Administrator</span>
                 </div>
             </div>
