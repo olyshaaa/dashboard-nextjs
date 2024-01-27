@@ -43,11 +43,11 @@ export const { signIn, signOut, auth } = NextAuth({
         try {
           const user = await login(credentials);
           console.log('Authorization successful. Returning user:', user);
-          return Promise.resolve({
+          return {
             username: user.username,
             email: user.email,
             img: user.img || '',
-          });
+          };
         } catch (err) {
           return null;
         }
