@@ -30,12 +30,6 @@ const AddProductPage = () => {
                 <div className='select-wrap'>
                 <Select classNamePrefix='custom-select' name='category' id='category' onChange={onChange} value={getValue()} options={options} placeholder="Choose a category" />
                 </div>
-                {/* <select name="category" id="category">
-                    <option value="general">Choose a Category</option>
-                    <option value="kitchen">Kitchen</option>
-                    <option value="phone">Phone</option>
-                    <option value="computer">Computer</option>
-                </select> */}
                 <input type="number" placeholder="price" name="price"/>
                 <input type="number" placeholder="stock" name="stock"/>
                 <input type="text" placeholder="size" name="size"/>
