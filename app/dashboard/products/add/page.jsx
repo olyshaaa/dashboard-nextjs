@@ -1,17 +1,41 @@
+"use client"
 import {addProduct} from "../../../lib/actions"
+import Select from "react-select"
 import styles from "../../../ui/dashboard/products/addProduct/addProduct.module.css"
+import "./custom-select.css"
+import { useState } from 'react'
+
+const options = [
+    {value: "kitchen", label: "kitchen"},
+    {value: "computer", label: "computer"},
+    {value: "phone", label: "phone"},
+    {value: "furniture", label: "furniture"},
+    {value: "books", label: "books"}
+]
 
 const AddProductPage = () => {
+    const [currentValue, setCurrentValue] = useState('')
+
+    const getValue = () => {
+        return currentValue ? options.find(c => c.value === currentValue) : ''
+    }
+
+    const onChange = (newValue) => {
+        setCurrentValue(newValue.value)
+    }
     return (
         <div className={styles.container}>
             <form action={addProduct} className={styles.form}>
                 <input type="text" placeholder="title" name="title" required/>
-                <select name="category" id="category">
+                <div className='select-wrap'>
+                <Select classNamePrefix='custom-select' name='category' id='category' onChange={onChange} value={getValue()} options={options} placeholder="Choose a category" />
+                </div>
+                {/* <select name="category" id="category">
                     <option value="general">Choose a Category</option>
                     <option value="kitchen">Kitchen</option>
                     <option value="phone">Phone</option>
                     <option value="computer">Computer</option>
-                </select>
+                </select> */}
                 <input type="number" placeholder="price" name="price"/>
                 <input type="number" placeholder="stock" name="stock"/>
                 <input type="text" placeholder="size" name="size"/>

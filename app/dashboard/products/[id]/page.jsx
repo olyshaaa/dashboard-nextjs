@@ -1,7 +1,17 @@
+"use client"
 import Image from "next/image"
+import Select from "react-select"
 import styles from "../../../ui/dashboard/products/singleProduct/singleUser.module.css"
 import { fetchProduct } from "../../../lib/data"
 import { updateProduct } from "../../../lib/actions"
+
+const options = [
+    {value: "kitchen", label: "kitchen"},
+    {value: "computer", label: "computer"},
+    {value: "phone", label: "phone"},
+    {value: "furniture", label: "furniture"},
+    {value: "books", label: ""}
+]
 
 const SingleProductPage = async ({params}) => {
     const {id} = params
@@ -29,9 +39,10 @@ const SingleProductPage = async ({params}) => {
                         <label>Size</label>
                         <textarea name="size" placeholder={size}/>
                         <label>Category</label>
+                        <Select styles={{}} options={options}/>
                         <select name="cat" id="category">
                             <option value="kitchen">Kitchen</option>
-                            <option value="computers">Computers</option>
+                            <option value="computers">Computerss</option>
                         </select>
                         <label>Description</label>
                         <textarea name="desc" id="desc" rows="10" placeholder={description}></textarea>

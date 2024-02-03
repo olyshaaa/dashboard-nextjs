@@ -1,0 +1,67 @@
+.custom-select__control {
+	padding: 30px !important;
+    background-color: var(--bgSoft) !important;
+    color: var(--text) !important;
+    border-radius: 5px !important;
+    margin-bottom: 30px !important;
+    border: 2px solid #2e374a !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+}
+
+.custom-select__control--menu-is-open {
+	border-color: white !important;
+}
+
+.custom-select__input{
+	color: white !important;
+}
+
+.custom-select__value-container {
+	padding: 0 !important;
+	cursor: text !important;
+	color: white !important;
+  }
+
+  .custom-select__input-container {
+	color: var(--text) !important;
+  }
+
+  .custom-select__indicator-separator {
+	display: none !important;
+  }
+
+  .custom-select__indicators {
+	cursor: pointer !important;
+  }
+
+  .custom-select__indicator:hover {
+	color: white !important;
+  }
+
+  .custom-select__menu {
+	background-color: var(--bgSoft) !important;
+	color: white !important;
+  }
+
+  .custom-select__option {
+	cursor: pointer !important;
+	color: white !important;
+  }
+
+  .custom-select__single-value{
+	color: #757575 !important;
+  }
+
+  .custom-select__option--is-focused {
+	background-color: var(--bg) !important;
+	color: white !important;
+  }
+
+.select-wrap{
+	width: 45%;
+}
+.custom-select__option--is-focused,
+.custom-select__option--is-focused.custom-select__option--is-selected{
+	color: white !important;
+}
