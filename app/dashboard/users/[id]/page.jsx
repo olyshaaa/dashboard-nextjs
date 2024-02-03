@@ -1,5 +1,7 @@
 import Image from "next/image"
 import styles from "../../../ui/dashboard/users/singleUser/singleUser.module.css"
+import "../../products/[id]/custom-select.css"
+import IsSelect from "./isSelect"
 import { fetchUser } from '../../../lib/data'
 import { updateUser } from "../../../lib/actions"
 
@@ -30,15 +32,9 @@ const SingleUserPage = async ({params}) => {
                         <label>Address</label>
                         <textarea name="address" placeholder={address}/>
                         <label> Is Admin?</label>
-                        <select name="isAdmin" id="isAdmin">
-                            <option value={true} selected={isAdmin}>Yes</option>
-                            <option value={false} selected={!isAdmin}>No</option>
-                        </select>
+                        <IsSelect name="isAdmin" id="isAdmin" />
                         <label> Is Active?</label>
-                        <select name="isActive" id="isActive">
-                            <option value="true" selected={isActive}>Yes</option>
-                            <option value="false" selected={!isActive}>No</option>
-                        </select>
+                        <IsSelect name="isActive" id="isActive"/>
                         <button>Update</button>
                     </form>
                 </div>
