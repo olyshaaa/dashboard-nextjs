@@ -2,8 +2,18 @@
     width: 100%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.container a{
+    margin-bottom: 15px;
+    background-color: crimson ;
+    border: 3px solid crimson;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
 }
 
 .form{
@@ -36,4 +46,44 @@
     border: none;
     cursor: pointer;
     border-radius: 10px;
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContent{
+    width: 400px;
+    background-color: var(--bg);
+    border-radius: 8px;
+    border: 2px solid var(--bg);
+}
+
+.modalHeader{
+    padding: 12px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modalHeader p{
+    background-color: teal;
+    width: 15px;
+    border-radius: 3px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.modalBody{
+    padding: 20px;
+    border-top: 1px solid white;
+    text-align: center;
 }
